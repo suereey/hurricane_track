@@ -10,4 +10,6 @@ The data utilized in this project is obtained from [NOAA](https://www.ncdc.noaa.
 
 [![Watch the video](https://i.imgur.com/vKb2F1B.png)](./animation_temperature_variation.mp4)
 
-<video src="animation_temperature_variation.mp4" width="320" height="200" controls preload></video>
+<video width="800" height="300" controls preload> 
+    <source src="animation_temperature_variation.mp4"></source> 
+</video>
