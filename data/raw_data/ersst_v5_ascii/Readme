@@ -1,0 +1,54 @@
+Note: ASCII data files are NOT archived in NCDC Archiving System
+      NetCDF data files ARE archived in NCDC Archiving System
+
+ERSST in ASCII format
+filename convention:
+
+(1) ERSST 
+
+ersst.VERSION.yyyy.asc
+yyyy=year
+
+Units: isst=100 degree C
+Missing value=-9999
+
+(2) grid information
+latitude: -88.0, increase northward per 2 degree, to +88.0
+longitude:  0.0, increase eastward per 2 degree, to 358.0
+
+(3) FORTRAN example
+
+      integer isst(180,89)
+      real    rsst(180,89)
+      character*4 cyr
+
+      open(51,file='../ersst.VERSION.2010.asc',status='old')
+                       do iy=2010,2010
+
+      write(cyr(1:4),'(i4.4)') iy
+      open(61,file='ersst.VERSION.'//cyr//'.asc',form='unformatted')
+
+      do mon=1,12
+      print*,iy,mon
+
+      do i=1,180
+      read(51,81) (isst(i,j),j=1,89)
+      end do
+
+        do i=1,180
+        do j=1,89
+        if(isst(i,j).gt.-900) then
+        rsst(i,j)=float(isst(i,j))/100.0
+        else
+        rsst(i,j)=-999.9
+        endif
+        enddo
+        enddo
+
+      write(61,rec=mon) rsst
+      end do
+      end do
+   81 format (89i6)
+
+      stop
+      end

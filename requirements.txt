@@ -1,0 +1,14 @@
+numpy
+av 
+scipy
+matplotlib
+progressbar
+ffmpeg
+bzip2
+ffmpeg
+gmp
+gnutls
+lame
+nettle
+openh264
+x264
